@@ -70,3 +70,4 @@ end
 
 gem 'bootstrap', '~> 5.0.2'
 gem "sassc-rails"
+gem 'ransack'
