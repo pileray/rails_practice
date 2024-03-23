@@ -1,3 +1,23 @@
 <%= @question.title %>
 <%= @question.body %>
 <%= @question.user.name %>
+
+回答
+<%= form_with model: [@question, Answer.new] do |f| %>
+  <%= f.label :body, "回答内容" %>
+  <%= f.text_area :body %>
+  <%= f.submit "回答する" %>
+<% end %>
+
+回答一覧
+<ul>
+  <% @answers.each do |answer| %>
+    <li>
+      <%= answer.body %>
+      <%= answer.user.name %>
+      <% if answer.user_id == current_user.id %>
+        <%= link_to "削除", question_answer_path(@question, answer), class: "btn btn-danger", data: { turbo_method: "delete", turbo_confirm: "削除しますか？" } %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

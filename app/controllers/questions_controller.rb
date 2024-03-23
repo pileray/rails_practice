@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @answers = @question.answers.all
   end
 
   def new
@@ -14,10 +15,10 @@ class QuestionsController < ApplicationController
   def create
     @question= current_user.questions.build(question_params)
     if @question.save
-      flash[:success] = "成功しました"
+      flash[:success] = "質問投稿しました"
       redirect_to question_path(@question)
     else
-      flash.now[:danger] = "失敗しました"
+      flash.now[:danger] = "失敗しました #{@question.errors.full_messages}"
       render :new
     end
   end
