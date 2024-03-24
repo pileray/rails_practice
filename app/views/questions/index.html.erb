@@ -4,6 +4,12 @@
     <%= f.search_field :title_or_body_or_answers_body_cont %>
     <%= f.submit %>
   <% end %>
+  <div>
+    <%= link_to "全て", questions_path %>
+    <%= link_to "解決", solved_questions_path %>
+    <%= link_to "未解決", unsolved_questions_path %>
+  </div>
+
   <ul>
     <% @questions.each do |question| %>
       <li>

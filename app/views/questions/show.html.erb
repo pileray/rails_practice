@@ -1,15 +1,25 @@
-<%= @question.title %>
-<%= @question.body %>
-<%= @question.user.name %>
+<p><%= @question.title %></p>
+<p><%= @question.body %></p>
+<p><%= @question.user.name %></p>
 
-回答
+<% if @question.solved == true %>
+  解決済です
+<% else %>
+  未解決です
+<% end %>
+
+<% if @question.user_id == current_user.id && @question.solved == false %>  
+  <%= link_to "解決する", solve_question_path(@question), data: { turbo_method: :post}, class: "btn btn-primary" %>
+<% end %>
+
+<h2>回答フォーム</h2>
 <%= form_with model: [@question, Answer.new] do |f| %>
   <%= f.label :body, "回答内容" %>
   <%= f.text_area :body %>
   <%= f.submit "回答する" %>
 <% end %>
 
-回答一覧
+<h2>回答一覧</h2>
 <ul>
   <% @answers.each do |answer| %>
     <li>

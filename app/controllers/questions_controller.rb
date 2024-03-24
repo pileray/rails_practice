@@ -4,6 +4,18 @@ class QuestionsController < ApplicationController
     @questions = @q.result(distinct: true)
   end
 
+  def solved
+    @q = Question.where(solved: true).ransack(params[:q])
+    @questions = @q.result(distinct: true)
+    render :index
+  end
+
+  def unsolved
+    @q = Question.where(solved: false).ransack(params[:q])
+    @questions = @q.result(distinct: true)
+    render :index
+  end
+
   def show
     @question = Question.find(params[:id])
     @answers = @question.answers.all
@@ -44,6 +56,13 @@ class QuestionsController < ApplicationController
     @question.destroy!
     flash[:success] = '削除しました。'
     redirect_to questions_path
+  end
+
+  def solve
+    @question = current_user.questions.find(params[:id])
+    @question.update(solved: true)
+    flash[:success] = "解決済にしました"
+    redirect_to question_path(@question)
   end
 
   private
