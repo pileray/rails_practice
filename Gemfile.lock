@@ -85,9 +85,9 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
-    bootstrap (5.0.2)
+    bootstrap (4.6.0)
       autoprefixer-rails (>= 9.1.0)
-      popper_js (>= 2.9.2, < 3)
+      popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
     builder (3.2.4)
     capybara (3.40.0)
@@ -152,7 +152,7 @@ GEM
     nio4r (2.7.0)
     nokogiri (1.16.3-x86_64-darwin)
       racc (~> 1.4)
-    popper_js (2.11.8)
+    popper_js (1.16.1)
     psych (5.1.2)
       stringio
     public_suffix (5.0.4)
@@ -261,7 +261,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
-  bootstrap (~> 5.0.2)
+  bootstrap (= 4.6.0)
   capybara
   debug
   error_highlight (>= 0.4.0)

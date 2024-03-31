@@ -68,6 +68,6 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'bootstrap', '~> 5.0.2'
+gem 'bootstrap', '4.6.0'
 gem "sassc-rails"
 gem 'ransack'
