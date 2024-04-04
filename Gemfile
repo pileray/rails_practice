@@ -71,3 +71,4 @@ end
 gem 'bootstrap', '4.6.0'
 gem "sassc-rails"
 gem 'ransack'
+gem 'kaminari'

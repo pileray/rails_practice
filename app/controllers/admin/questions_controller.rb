@@ -1,6 +1,6 @@
 class Admin::QuestionsController < Admin::BaseController
   def index
-    @questions = Question.all
+    @questions = Question.all.page(params[:page]).per(5)
   end
 
   def destroy
