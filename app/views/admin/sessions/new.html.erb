@@ -24,7 +24,7 @@
       <div class="card">
         <div class="card-body login-card-body">
           <p class="login-box-msg">Sign in to start your session</p>
-          <%= form_with url: admin_login_path do |f| %>
+          <%= form_with url: admin_login_path, method: :post do |f| %>
             <div class="input-group mb-3">
               <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
               <div class="input-group-append">
@@ -34,7 +34,7 @@
               </div>
             </div>
             <div class="input-group mb-3">
-              <%= f.email_field :password, class: "form-control", placeholder: "Password" %>
+              <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-lock"></span>

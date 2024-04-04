@@ -3,6 +3,8 @@ class Admin::BaseController < ApplicationController
   before_action :require_admin
 
   def require_admin
-    redirect_to root_path unless current_user&.admin_flag?
+    unless current_user&.admin_flag?
+      redirect_to root_path
+    end
   end
 end

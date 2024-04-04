@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/login", to: "sessions#new"
-    get "/login", to: "sessions#create"
+    post "/login", to: "sessions#create"
     resources :users, only: [:index, :destroy]
     resources :questions, only: [:index, :destroy]
   end
