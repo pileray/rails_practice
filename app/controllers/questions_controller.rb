@@ -6,13 +6,13 @@ class QuestionsController < ApplicationController
 
   def solved
     @q = Question.where(solved: true).ransack(params[:q])
-    @questions = @q.result(distinct: true)
+    @questions = @q.result(distinct: true).page(params[:page]).per(5)
     render :index
   end
 
   def unsolved
     @q = Question.where(solved: false).ransack(params[:q])
-    @questions = @q.result(distinct: true)
+    @questions = @q.result(distinct: true).page(params[:page]).per(5)
     render :index
   end
 
@@ -28,6 +28,9 @@ class QuestionsController < ApplicationController
   def create
     @question= current_user.questions.build(question_params)
     if @question.save
+      User.where.not(id: @question.user_id).each do |user|
+        QuestionMailer.with(user: user, question: @question).notice_question.deliver_later
+      end
       flash[:success] = "質問投稿しました"
       redirect_to question_path(@question)
     else

@@ -21,4 +21,6 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :destroy]
     resources :questions, only: [:index, :destroy]
   end
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
